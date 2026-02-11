@@ -1,0 +1,9 @@
+.footer-up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradien(hsl(0 0% 5%) 100%);
+}
+.footer-up p {
+    color: hsl(0 0% 90%);
+}

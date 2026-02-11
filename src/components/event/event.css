@@ -1,0 +1,24 @@
+.event-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    gap: 1rem;
+}
+.event-text {
+    color: hsl(0 0% 90%);
+}
+.event-disc {
+    color: hsl(0 0% 67%);
+}
+
+@media only screen and (max-width: 600px) {
+    .event-display {
+        grid-template-columns: 1fr;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+h1 {
+    font-size: 2.1rem;
+}

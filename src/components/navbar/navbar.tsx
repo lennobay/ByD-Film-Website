@@ -1,0 +1,47 @@
+import { useNavigate } from "react-router";
+import "./navbar.css";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+export default function Navbar() {
+  const [overlay, setOverlay] = useState(0);
+  const navigate = useNavigate();
+  if (overlay == 0) {
+    return (
+      <div className="navbar">
+        <div className="header-title">
+          <h2 onClick={() => navigate("/")}>ByD Film</h2>
+        </div>
+        <div className="header-choose-desktop">
+          <a href="/">
+            <p>Home</p>
+          </a>
+          <a href="/collections/">
+            <p>Kollektionen</p>
+          </a>
+          <a href="/veranstaltungen/">
+            <p>Veranstaltungen</p>
+          </a>
+        </div>
+        <div className="header-choose-mobile">
+          <i onClick={() => setOverlay(1)} className="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    );
+  } else if (overlay == 1) {
+    return createPortal(
+      <div className="mobile-menu">
+        <i className="fa-solid fa-x" onClick={() => setOverlay(0)}></i>
+        <a href="/">
+          <p>Home</p>
+        </a>
+        <a href="/collections/">
+          <p>Kollektionen</p>
+        </a>
+        <a href="/veranstaltungen/">
+          <p>Veranstaltungen</p>
+        </a>
+      </div>,
+      document.body,
+    );
+  }
+}

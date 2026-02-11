@@ -1,0 +1,12 @@
+.event-view-upper-part {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.event-view-title {
+    color: hsl(0 0% 97%);
+}
+.event-view-text {
+    color: hsl(0 0% 85%);
+    text-align: justify;
+}
