@@ -11,7 +11,7 @@ export default function DeviderContact() {
         </div>
         <div
           onClick={() =>
-            (window.location = "https://www.instagram.com/byd_film/")
+            (window.location.href = "https://www.instagram.com/byd_film/")
           }
           className="contact-left-sub"
         >

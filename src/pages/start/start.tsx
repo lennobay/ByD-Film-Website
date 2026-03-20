@@ -1,13 +1,15 @@
+import { Suspense } from "react";
 import CollectionLimited from "../../components/collection/collection-limited";
 import DeviderContact from "../../components/divider/contact";
 import EventLimited from "../../components/event/event-limited";
 import Footerbar from "../../components/footer/footer";
 import Hero from "../../components/hero/hero";
 import "./start.css";
+import Loading from "../../components/loading/loading";
 
 export default function StartPage() {
   return (
-    <>
+    <Suspense fallback={<Loading></Loading>}>
       <Hero></Hero>
       <div className="rest">
         <div>
@@ -37,6 +39,6 @@ export default function StartPage() {
         </div>
       </div>
       <Footerbar></Footerbar>
-    </>
+    </Suspense>
   );
 }

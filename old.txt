@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
+
 .header-title {
     display: flex;
     align-items: center;
@@ -21,30 +22,21 @@
     justify-content: center;
     font-size: 1.1rem;
 }
+
 .header-choose-mobile {
     display: none;
     align-items: center;
     justify-content: center;
     font-size: var(--h2);
-    cursor: pointer;
 }
+
 .mobile-menu {
     display: grid;
     height: 100vh;
-    width: 100vw;
     position: fixed;
-    top: 0;
-    left: 0;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.95);
-    gap: 2rem;
-    overflow: hidden;
-}
-.mobie-menu-sub {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
 }
 .mobile-menu a {
     color: white;
@@ -54,10 +46,6 @@
 .mobile-menu i {
     font-size: var(--h2);
     color: white;
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    cursor: pointer;
 }
 :root {
     --h1: 2.986rem;

@@ -1,22 +1,35 @@
 import { useParams } from "react-router";
 import Navbar from "../../components/navbar/navbar";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./collection-view.css";
+import Footerbar from "../../components/footer/footer";
+import Loading from "../../components/loading/loading";
+
+interface Collection {
+  title: string;
+}
 export default function CollectionView() {
   const navigate = useNavigate();
   const params = useParams();
-  const [collectionInfo, setcollectionInfo] = useState({});
-  const [images, setImages] = useState([]);
+  const [collectionInfo, setcollectionInfo] = useState<Collection>({
+    title: "",
+  });
+  // const [images, setImages] = useState([]);
 
-  const allimages = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+  const [allimages, setallimages] = useState<string[]>([]);
   useEffect(() => {
     async function getDetails() {
       const details_fetch =
-        "http://localhost:8081/v1/company/byd-film/kollektionen/details/" +
+        "https://api.byd-film.de/v1/company/byd-film/kollektionen/details/" +
         params.id;
       const details = await fetch(details_fetch);
       const details_parsed = await details.json();
+      if (details_parsed.picture_names == null) {
+        setallimages(["/notfound.jpg"]);
+      } else {
+        setallimages(details_parsed.picture_names);
+      }
 
       setcollectionInfo({
         title: details_parsed.title,
@@ -31,21 +44,24 @@ export default function CollectionView() {
   } else {
     return (
       <>
-        <Navbar></Navbar>
-        <div>
-          <h1 className="collection-view-title">{collectionInfo.title}</h1>
-          <div className="collection-view-up">
-            {allimages.map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  background: `url("/pictures/kollektionen/${params.id}/${item}") no-repeat center /cover`,
-                  aspectRatio: 16 / 9,
-                }}
-              ></div>
-            ))}
+        <Suspense fallback={<Loading></Loading>}>
+          <Navbar></Navbar>
+          <div>
+            <h1 className="collection-view-title">{collectionInfo.title}</h1>
+            <div className="collection-view-up">
+              {allimages.map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: ` url("https://pictures.byd-film.de/kollektionen/${params.id}/${item}") no-repeat center /cover`,
+                    aspectRatio: 16 / 9,
+                  }}
+                ></div>
+              ))}
+            </div>
           </div>
-        </div>
+          <Footerbar></Footerbar>
+        </Suspense>
       </>
     );
   }

@@ -8,13 +8,13 @@ export default function EventLimited() {
   useEffect(() => {
     async function getIds() {
       const res = await fetch(
-        "http://localhost:8081/v1/company/byd-film/veranstaltungen/latest",
+        "https://api.byd-film.de/v1/company/byd-film/veranstaltungen/latest",
       );
       const allinfo = [];
       const data = await res.json();
       for (let i = 0; i < data.ids.length; i++) {
         const details_fetch =
-          "http://localhost:8081/v1/company/byd-film/veranstaltungen/details/" +
+          "https://api.byd-film.de/v1/company/byd-film/veranstaltungen/details/" +
           data.ids[i];
         const details = await fetch(details_fetch);
         const details_parsed = await details.json();
@@ -31,12 +31,12 @@ export default function EventLimited() {
       {items.map((item, info) => (
         <div
           key={info}
-          onClick={() => navigate(`/veranstaltungen/view/${item.id}`)}
+          onClick={() => navigate("/veranstaltungen/view/" + item.id)}
         >
           <div
             className="event-sub"
             style={{
-              background: `url("/pictures/veranstaltungen/${item.id}/thumbnail.jpg")  no-repeat center /cover`,
+              background: `url("https://pictures.byd-film.de/veranstaltungen/${item.id}/thumbnail.jpg")  no-repeat center /cover`,
               aspectRatio: 16 / 9,
             }}
             key={item}

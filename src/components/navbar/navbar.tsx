@@ -31,15 +31,17 @@ export default function Navbar() {
     return createPortal(
       <div className="mobile-menu">
         <i className="fa-solid fa-x" onClick={() => setOverlay(0)}></i>
-        <a href="/">
-          <p>Home</p>
-        </a>
-        <a href="/collections/">
-          <p>Kollektionen</p>
-        </a>
-        <a href="/veranstaltungen/">
-          <p>Veranstaltungen</p>
-        </a>
+        <div className="mobile-menu-sub">
+          <a href="/">
+            <p>Home</p>
+          </a>
+          <a href="/collections/">
+            <p>Kollektionen</p>
+          </a>
+          <a href="/veranstaltungen/">
+            <p>Veranstaltungen</p>
+          </a>
+        </div>
       </div>,
       document.body,
     );

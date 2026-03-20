@@ -3,19 +3,28 @@ import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 import "./events-view.css";
+interface Event {
+  text: string;
+  title: string;
+}
+import Footerbar from "../../components/footer/footer";
 export default function EventsView() {
   const params = useParams();
-  const [images, setImages] = useState([]);
-  const [eventInfo, seteventInfo] = useState({});
-  const allimages = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+  //  const [images, setImages] = useState([]);
+  const [eventInfo, seteventInfo] = useState<Event>({
+    text: "",
+    title: "",
+  });
+  const [allimages, setallimages] = useState([]);
+
   useEffect(() => {
     async function getDetails() {
       const details_fetch =
-        "http://localhost:8081/v1/company/byd-film/veranstaltungen/details/" +
+        "https://api.byd-film.de/v1/company/byd-film/veranstaltungen/details/" +
         params.id;
       const details = await fetch(details_fetch);
       const details_parsed = await details.json();
-
+      setallimages(details_parsed.picture_names);
       seteventInfo({
         title: details_parsed.title,
         text: details_parsed.text,
@@ -45,6 +54,7 @@ export default function EventsView() {
           ))}
         </div>
       </div>
+      <Footerbar></Footerbar>
     </>
   );
 }
