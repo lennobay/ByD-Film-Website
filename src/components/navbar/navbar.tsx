@@ -12,13 +12,13 @@ export default function Navbar() {
           <h2 onClick={() => navigate("/")}>ByD Film</h2>
         </div>
         <div className="header-choose-desktop">
-          <a href="/">
+          <a onClick={() => navigate("/")}>
             <p>Home</p>
           </a>
-          <a href="/collections/">
+          <a onClick={() => navigate("/collections")}>
             <p>Kollektionen</p>
           </a>
-          <a href="/veranstaltungen/">
+          <a onClick={() => navigate("/veranstaltungen")}>
             <p>Veranstaltungen</p>
           </a>
         </div>
@@ -32,13 +32,13 @@ export default function Navbar() {
       <div className="mobile-menu">
         <i className="fa-solid fa-x" onClick={() => setOverlay(0)}></i>
         <div className="mobile-menu-sub">
-          <a href="/">
+          <a onClick={() => navigate("/")}>
             <p>Home</p>
           </a>
-          <a href="/collections/">
+          <a onClick={() => navigate("/collections")}>
             <p>Kollektionen</p>
           </a>
-          <a href="/veranstaltungen/">
+          <a  onClick={() => navigate("/veranstaltungen")}>
             <p>Veranstaltungen</p>
           </a>
         </div>
